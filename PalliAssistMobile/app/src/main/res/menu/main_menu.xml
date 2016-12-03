@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools
+    tools:context=io.palliassist.palliassistmobile.MainActivity">
+
     <item
-        android:id="@+id/discuss"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="Discuss"/>
+        android:id="@+id/context_message"
+        android:title="Communicate"
+        android:layout_gravity="center"
+
+        />
+    <item
+        android:id="@+id/context_notify"
+        android:title="Notifications"
+        android:layout_gravity="center"/>
+    <item
+        android:id="@+id/context_emerg"
+        android:title="Emergency"
+        android:layout_gravity="center"/>
+    <item
+        android:id="@+id/context_setting"
+        android:title="Settings"
+        android:layout_gravity="center"/>
+
+
     <!--could be missing android:showAsAction="never"
         getting syntax issue -->
 
