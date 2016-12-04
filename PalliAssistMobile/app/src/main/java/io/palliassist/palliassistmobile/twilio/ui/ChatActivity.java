@@ -47,8 +47,9 @@ import uk.co.ribot.easyadapter.EasyAdapter;
 public class ChatActivity extends Activity implements ChannelListener, ILoginListener, IPMessagingClientListener {
 
     //Authentication
+    private String user;
     //current auth script being run on my laptop
-    private static final String AUTH_SCRIPT = "https://fb794bea.ngrok.io/";
+    private static final String AUTH_SCRIPT = "https://21f93437.ngrok.io/token";
     private String capabilityToken = null;
     private BasicIPMessagingClient basicClient;
     private ProgressDialog progressDialog;
@@ -61,7 +62,6 @@ public class ChatActivity extends Activity implements ChannelListener, ILoginLis
     private ListView lvChat;
     private EditText etMessage;
     private Channel channel;
-    private int currentImage;
     public static String local_author;
 
     @Override
@@ -73,8 +73,6 @@ public class ChatActivity extends Activity implements ChannelListener, ILoginLis
         if(basicClient != null) {
             authenticateUser();
         }
-
-        //Chat box
 
 
         //Message Text
@@ -155,6 +153,7 @@ public class ChatActivity extends Activity implements ChannelListener, ILoginLis
                 JSONObject responseObject = new JSONObject(capabilityToken);
                 String token = responseObject.getString("token");
                 ChatActivity.local_author = responseObject.getString("identity");
+                user = ChatActivity.local_author;
 
                 basicClient.setCapabilityToken(token);
             } catch (Exception e) {
@@ -174,7 +173,7 @@ public class ChatActivity extends Activity implements ChannelListener, ILoginLis
         ChatActivity.this.progressDialog.dismiss();
         basicClient.getIpMessagingClient().setListener(ChatActivity.this);
 
-        final String channelName = "TestChannel" + String.valueOf(currentImage);
+        final String channelName = "Channel_" + user;
         Channels channelsLocal = basicClient.getIpMessagingClient().getChannels();
         // Creates a new public channel if one doesn't already exist
         if (channelsLocal.getChannelByUniqueName(channelName) != null) {
@@ -207,7 +206,7 @@ public class ChatActivity extends Activity implements ChannelListener, ILoginLis
 
             final Map<String, String> attributes = new HashMap<>();
             //need to change name
-            attributes.put("topic", "Discussion on image : " + String.valueOf(currentImage));
+            attributes.put("topic", "Patient Channel:  " + user );
 
             Map<String, Object> options = new HashMap<>();
             options.put(Constants.CHANNEL_FRIENDLY_NAME, channelName);
