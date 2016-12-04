@@ -2,6 +2,20 @@
 <items version="2" >
 
     <item
+        jar="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/libs/twilio-common-android.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="03234c61fba14906fa514ed6b9399fe7177aa3b2">
+        <dex dex="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/pre-dexed/debug/twilio-common-android-c1cec652cef903b6f439f49999e0dafecade01cd.jar" />
+    </item>
+    <item
+        jar="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/libs/twilio-ip-messaging-android.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b81c5c8dbb41f90b44858154339c4011ba7b4de5">
+        <dex dex="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/pre-dexed/debug/twilio-ip-messaging-android-e16dbff15c2b2e5862c692bdd89f8b82c2fe4e67.jar" />
+    </item>
+    <item
         jar="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.2"
@@ -14,6 +28,13 @@
         revision="23.0.2"
         sha1="19026d31f5d3ae868db81319671a642be5fbba08">
         <dex dex="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/pre-dexed/debug/classes-f84a7a9112f55ddef77b1c6d842c6e06b252f781.jar" />
+    </item>
+    <item
+        jar="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/uk.co.ribot/easyadapter/1.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="10effc3676c8dac084163d4228cc0b93102366be">
+        <dex dex="/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/pre-dexed/debug/classes-6748fc735319892eb55883e5a4c8e98b7b60545e.jar" />
     </item>
 
 </items>
