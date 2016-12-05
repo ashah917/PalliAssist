@@ -39,6 +39,18 @@
             android:exported="false" />
 
         <activity android:name="io.palliassist.palliassistmobile.twilio.ui.ChatActivity" />
+        <activity android:name="io.palliassist.palliassistmobile.PainLocator" >
+        </activity>
+
+        <receiver android:name="io.palliassist.palliassistmobile.VerticalSeekBar" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/vertical_seek_bar_info" />
+        </receiver>
     </application>
 
 </manifest>

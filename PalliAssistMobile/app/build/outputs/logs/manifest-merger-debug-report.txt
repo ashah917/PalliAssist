@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:2:1-38:12
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:2:1-50:12
 	package
 		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:3:5-47
 		INJECTED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml
@@ -30,7 +30,7 @@ ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app
 	android:name
 		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:10:22-73
 application
-ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:13:5-36:19
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:13:5-48:19
 MERGED from [com.android.support:support-v4:23.1.0] /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.1.0] /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.1.0] /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/AndroidManifest.xml:22:5-20
@@ -66,7 +66,7 @@ ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app
 	android:name
 		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:24:27-74
 activity#io.palliassist.palliassistmobile.MainActivity
-ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:27:9-29:69
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:27:9-29:60
 	android:label
 		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:29:13-57
 	android:name
@@ -78,9 +78,29 @@ ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app
 	android:name
 		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:32:13-81
 activity#io.palliassist.palliassistmobile.twilio.ui.ChatActivity
-ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:35:9-69
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:35:9-60
 	android:name
 		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:35:19-57
+activity#io.palliassist.palliassistmobile.PainLocator
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:36:9-37:20
+	android:name
+		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:36:19-46
+receiver#io.palliassist.palliassistmobile.VerticalSeekBar
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:39:9-47:20
+	android:name
+		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:39:19-50
+intent-filter#android.appwidget.action.APPWIDGET_UPDATE
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:40:13-42:29
+action#android.appwidget.action.APPWIDGET_UPDATE
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:41:17-84
+	android:name
+		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:41:25-81
+meta-data#android.appwidget.provider
+ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:44:13-46:66
+	android:resource
+		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:46:17-63
+	android:name
+		ADDED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml:45:17-58
 uses-sdk
 INJECTED from /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:support-v4:23.1.0] /Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/AndroidManifest.xml:20:5-43
