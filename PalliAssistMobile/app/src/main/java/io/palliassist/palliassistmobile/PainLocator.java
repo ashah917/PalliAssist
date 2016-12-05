@@ -1,9 +1,11 @@
 package io.palliassist.palliassistmobile;
 
+/**
+ * Created by Steven on 12/5/2016.
+ */
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -42,6 +44,7 @@ public class PainLocator extends BaseActivity {
         public boolean onDown(MotionEvent e) {
             return true;
         }
+
         // event when double tap occurs
         @Override
         public boolean onDoubleTap(MotionEvent e) {

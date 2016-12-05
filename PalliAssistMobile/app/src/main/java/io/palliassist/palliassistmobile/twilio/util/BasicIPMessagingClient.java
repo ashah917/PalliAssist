@@ -87,22 +87,22 @@ public class BasicIPMessagingClient implements IPMessagingClientListener, Twilio
         }
     }
 
-
+    @Override
     public void onError(int errorCode, String errorText) {
         Log.d(TAG, "Received onError event.");
     }
 
-
+    @Override
     public void onAttributesChange(String attributes) {
         Log.d(TAG, "Received onAttributesChange event.");
     }
 
-
+    @Override
     public void onChannelHistoryLoaded(Channel channel) {
         Log.d(TAG, "Received onChannelHistoryLoaded callback " + channel.getFriendlyName());
     }
 
-
+    @Override
     public void onAccessManagerTokenExpire(TwilioAccessManager arg0) {
         Log.d(TAG, "Received AccessManager:onAccessManagerTokenExpire.");
     }
@@ -136,7 +136,7 @@ public class BasicIPMessagingClient implements IPMessagingClientListener, Twilio
 
     private void createClientWithAccessManager(final ILoginListener listener) {
         this.accessMgr = TwilioAccessManagerFactory.createAccessManager(this.capabilityToken, new TwilioAccessManagerListener() {
-
+            @Override
             public void onAccessManagerTokenExpire(TwilioAccessManager twilioAccessManager) {
                 Log.d(TAG, "token expired.");
                 new GetCapabilityTokenAsyncTask().execute(BasicIPMessagingClient.this.urlString);

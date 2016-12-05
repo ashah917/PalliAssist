@@ -56,7 +56,7 @@ import uk.co.ribot.easyadapter.EasyAdapter;
 public class ChatActivity extends BaseActivity implements ChannelListener, ILoginListener, IPMessagingClientListener {
     private String user;
     // Authentication
-    private static final String AUTH_SCRIPT = "https://cd7938f4.ngrok.io/token";
+    private static final String AUTH_SCRIPT = "http://5225fd9f.ngrok.io/token";
     private String capabilityToken = null;
     private BasicIPMessagingClient basicClient;
     private ProgressDialog progressDialog;

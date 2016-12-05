@@ -22,7 +22,7 @@ public class TwilioApplication extends Application {
 
     }
 
-    public BasicIPMessagingClient getClient() {
+    public BasicIPMessagingClient getBasicClient() {
         return this.rtdJni;
     }
 

@@ -71,6 +71,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 final Intent k = new Intent(this, EsasActivity.class);
                 startActivity(k);
                 finish();
+                return;
             case R.id.button_pain:
                 final Intent m = new Intent(this, PainLocator.class);
                 startActivity(m);
@@ -83,6 +84,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 final Intent n = new Intent(this, SettingActivity.class);
                 startActivity(n);
                 finish();
+                return;
         }
     }
 

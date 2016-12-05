@@ -13,24 +13,24 @@
             <item
                 android:id="@+id/context_return"
                 android:layout_gravity="center"
-                android:title="Return to Menu"
+                android:title="@string/return_menu"
                  />
             <item
                 android:id="@+id/context_message"
                 android:layout_gravity="center"
-                android:title="Communication"
+                android:title="@string/messaging"
 
 
                 />
             <item
                 android:id="@+id/context_notify"
                 android:layout_gravity="center"
-                android:title="Notifications"
+                android:title="@string/notification"
                  />
             <item
                 android:id="@+id/context_setting"
                 android:layout_gravity="center"
-                android:title="Settings"
+                android:title="@string/settings"
                  />
 
         </menu>
