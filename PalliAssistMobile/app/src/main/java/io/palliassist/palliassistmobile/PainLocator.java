@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-public class PainLocator extends AppCompatActivity {
+public class PainLocator extends BaseActivity {
 
     private GestureDetector gestureDetector;
     private boolean tapped = false;
