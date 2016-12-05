@@ -35,6 +35,8 @@
         <activity android:name=".twilio.ui.ChatActivity" />
         <activity android:name=".PainLocator" >
         </activity>
+        <activity android:name=".EsasActivity"/>
+        <activity android:name=".SettingActivity"/>
 
         <receiver android:name=".VerticalSeekBar" >
             <intent-filter>
