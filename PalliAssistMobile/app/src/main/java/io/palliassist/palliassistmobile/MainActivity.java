@@ -72,7 +72,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivity(k);
                 finish();
             case R.id.button_pain:
-                /* TODO*?*/
+                final Intent m = new Intent(this, PainLocator.class);
+                startActivity(m);
+                finish();
                 return;
 
 
