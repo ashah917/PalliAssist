@@ -1,28 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools
-    tools:context=io.palliassist.palliassistmobile.MainActivity">
-
+    xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id="@+id/context_message"
-        android:title="Communicate"
+        android:id="@+id/menu"
         android:layout_gravity="center"
+        android:icon="@drawable/setting_icon"
 
-        />
-    <item
-        android:id="@+id/context_notify"
-        android:title="Notifications"
-        android:layout_gravity="center"/>
-    <item
-        android:id="@+id/context_emerg"
-        android:title="Emergency"
-        android:layout_gravity="center"/>
-    <item
-        android:id="@+id/context_setting"
-        android:title="Settings"
-        android:layout_gravity="center"/>
+        app:showAsAction="always">
 
+
+        <menu>
+            <item
+                android:id="@+id/context_return"
+                android:layout_gravity="center"
+                android:title="Return to Menu"
+                 />
+            <item
+                android:id="@+id/context_message"
+                android:layout_gravity="center"
+                android:title="Communication"
+
+
+                />
+            <item
+                android:id="@+id/context_notify"
+                android:layout_gravity="center"
+                android:title="Notifications"
+                 />
+            <item
+                android:id="@+id/context_setting"
+                android:layout_gravity="center"
+                android:title="Settings"
+                 />
+
+        </menu>
+    </item>
 
     <!--could be missing android:showAsAction="never"
         getting syntax issue -->
