@@ -249,11 +249,6 @@
     <dimen name="notification_large_icon_height">64dp</dimen>
     <dimen name="notification_large_icon_width">64dp</dimen>
     <dimen name="notification_subtext_size">12dp</dimen>
-    <!-- From: file:/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/res/values/dimens.xml -->
-    <eat-comment/>
-    <dimen name="widget_margin">8dp</dimen>
-    <!-- From: file:/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values/values.xml -->
-    <eat-comment/>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
@@ -307,28 +302,29 @@
     <eat-comment/>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="add_widget">Add widget</string>
     <string name="app_name">Welcome to PalliAssist</string>
     <!-- From: file:/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/res/values/values.xml -->
     <eat-comment/>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    <!-- From: file:/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/res/values/strings.xml -->
-    <eat-comment/>
-    <string name="appwidget_text">EXAMPLE</string>
-    <!-- From: file:/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/res/values/values.xml -->
-    <eat-comment/>
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <!-- From: file:/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="emergency">Emergency</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
+    <string name="feature">Features</string>
+    <string name="main_menu">Menu</string>
+    <string name="messaging">Communicate</string>
+    <string name="notification">Notification</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
+    <string name="return_menu">Main Screen</string>
+    <string name="settings">Settings</string>
     <!-- From: file:/Users/aakashshah/android_workspace/PalliAssist/PalliAssistMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/res/values/values.xml -->
     <eat-comment/>
     <string name="status_bar_notification_info_overflow">999+</string>

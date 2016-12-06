@@ -25,6 +25,7 @@ dependencies {
     compile 'com.android.support:support-v4:23.0.0'
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:design:23.1.0'
+    compile 'com.android.volley:volley:1.0.0'
     compile 'uk.co.ribot:easyadapter:1.5.0@aar'
     compile files('libs/twilio-ip-messaging-android.jar')
     compile files('libs/twilio-common-android.jar')

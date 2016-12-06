@@ -150,7 +150,7 @@ public class ChatActivity extends BaseActivity implements ChannelListener, ILogi
                 Collections.sort(messages, new CustomMessageComparator());
             }
         }
-
+/*
         adapter = new EasyAdapter<>(this, MessageViewHolder.class, messages,
                 new MessageViewHolder.OnMessageClickListener() {
 
@@ -175,7 +175,7 @@ public class ChatActivity extends BaseActivity implements ChannelListener, ILogi
                 }
             });
         }
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
     }
 
 

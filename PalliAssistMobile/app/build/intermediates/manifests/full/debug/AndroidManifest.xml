@@ -13,7 +13,11 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <!-- enable wifi state -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- android:name="com.twilio.ipmessaging.application.TwilioApplication" -->
     <application
@@ -32,25 +36,28 @@
         </activity>
         <activity
             android:name="io.palliassist.palliassistmobile.MainActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
+        </activity>
+        <activity
+            android:name="io.palliassist.palliassistmobile.EsasActivity"
+            android:label="ESAS survey" />
+        <activity
+            android:name="io.palliassist.palliassistmobile.SettingActivity"
+            android:label="Settings" />
+        <activity
+            android:name="io.palliassist.palliassistmobile.PainLocator"
+            android:label="Pain Locator" />
+        <activity
+            android:name="io.palliassist.palliassistmobile.twilio.ui.ChatActivity"
+            android:label="ChatActivity"
+            android:noHistory="true" />
 
         <service
             android:name="com.twilio.ipmessaging.TwilioIPMessagingClientService"
             android:exported="false" />
-
-        <activity android:name="io.palliassist.palliassistmobile.twilio.ui.ChatActivity" />
-        <activity android:name="io.palliassist.palliassistmobile.PainLocator" >
-        </activity>
-
-        <receiver android:name="io.palliassist.palliassistmobile.VerticalSeekBar" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/vertical_seek_bar_info" />
-        </receiver>
     </application>
 
 </manifest>
