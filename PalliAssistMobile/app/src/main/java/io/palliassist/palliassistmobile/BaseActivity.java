@@ -58,6 +58,9 @@ public class BaseActivity extends AppCompatActivity {
                 break;
 
             case R.id.context_setting:
+                final Intent m = new Intent(this, SettingActivity.class);
+                startActivity(m);
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
