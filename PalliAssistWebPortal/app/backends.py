@@ -1,14 +1,17 @@
 # import the User object
 from django.contrib.auth.models import User
-#import MySQLdb
+from django.conf import settings
 from redcap import Project, RedcapError
 
-# verify against mysql db
-class SqlBackend:
+# verify against redcap db
+class REDCapBackend:
 
     # create an authentication method
     # this is called by the standard django login procedure
     def authenticate(self, username=None, password=None):
+        print
+        print "[REDCapBackend.authenticate]"
+        print
         """
         db = MySQLdb.connect(host="us-cdbr-azure-southcentral-f.cloudapp.net", user="b811fcf3c52d36", passwd="91e7ba1e", db="palliative")
         cur = db.cursor()
@@ -19,16 +22,24 @@ class SqlBackend:
         db.close()
         """
 
+        """
+        # Clear all users from the db
+        print "before:", User.objects.all()
+        User.objects.all().delete()
+        print "after:", User.objects.all()
+        """
+
         URL = 'https://hcbredcap.com.br/api/'
         TOKEN = 'F2C5AEE8A2594B0A9E442EE91C56CC7A'
 
-        project = Project(URL, TOKEN)
+        #project = Project(URL, TOKEN)
+        #print project
 
-        for field in project.metadata:
+        for field in settings.REDCAP_USER_PROJECT.metadata:
             print "%s (%s) => %s" % (field['field_name'],field['field_type'], field['field_label'])
 
         found = False
-        data = project.export_records()
+        data = settings.REDCAP_USER_PROJECT.export_records()
         for d in data:
             if d['username'] == username and d['password'] == password:
                 found = True

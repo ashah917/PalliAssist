@@ -3,9 +3,41 @@ Django settings for django_get_started project.
 """
 
 from os import path
+from redcap import Project, RedcapError
+
+from twilio.access_token import AccessToken, IpMessagingGrant
+from twilio.rest.ip_messaging import TwilioIpMessagingClient
+#from twilio.rest import TwilioRestClient
+
 PROJECT_ROOT = path.dirname(path.abspath(path.dirname(__file__)))
 
-DEBUG = True
+USER_URL = 'https://hcbredcap.com.br/api/'
+USER_TOKEN = 'F2C5AEE8A2594B0A9E442EE91C56CC7A'
+
+#REDCAP_USER_PROJECT = Project(USER_URL, USER_TOKEN)
+
+# get credentials for environment variables
+TWILIO_ACCOUNT_SID = 'ACbf05fc8a591d9136132c9d62d8319eb1'
+TWILIO_AUTH_TOKEN = '09f9ba77cd7c40b602cab2f484e58c07'
+TWILIO_API_SECRET = 'R3W2DYt3Eq1hbwj2GRKQV531XeVDU9sJ'
+
+TWILIO_API_KEY = 'SKeed5a60867e8f918ac7f2e9fa819d98a'
+TWILIO_IPM_SERVICE_SID = 'IS2ec68050ef5e4c79b15b78c3ded7ddc5'
+
+#TWILIO_NOTIFY_SERVICE_SID = 'IS310eb54f12af4a3a5eddb61fbd987380'
+
+# old one with testchannel nd general
+#TWILIO_SERVICE_SID = 'IS7d421d86df064d9698e91ee6e3d4bcf5'
+
+# Initialize the client
+TWILIO_IPM_CLIENT = TwilioIpMessagingClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+TWILIO_IPM_SERVICE = TWILIO_IPM_CLIENT.services.get(sid=TWILIO_IPM_SERVICE_SID)
+#TWILIO_NOTIFY_CLIENT = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+
+
+
+DEBUG = True 
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = (
@@ -20,7 +52,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-AUTHENTICATION_BACKENDS = ('app.backends.SqlBackend',)
+AUTHENTICATION_BACKENDS = ('app.backends.REDCapBackend',)
 
 DATABASES = {
     'default': {
@@ -35,7 +67,7 @@ DATABASES = {
 
 
 LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -128,14 +160,15 @@ TEMPLATES = [
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
     'DIRS': [
         path.join(path.dirname(__file__), 'templates'),
+        PROJECT_ROOT + '/app/templates/app',
     ],
     'APP_DIRS': True,
     'OPTIONS': {
         'context_processors': [
-        'django.template.context_processors.debug',
-        'django.template.context_processors.request',
-        'django.contrib.auth.context_processors.auth',
-        'django.contrib.messages.context_processors.messages',
+            'django.template.context_processors.debug',
+            'django.template.context_processors.request',
+            'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
         ],
     },
 },
@@ -150,7 +183,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
