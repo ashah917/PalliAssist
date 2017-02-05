@@ -7,6 +7,9 @@ from django.conf.urls import *
 from app.forms import BootstrapAuthenticationForm
 from app import views as app_views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
 
 # Uncomment the next lines to enable the admin:
 # from django.conf.urls import include
@@ -15,25 +18,41 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Examples:
-    url(r'^$', app_views.home, name='home'),
-    url(r'^contact$', app_views.contact, name='contact'),
-    url(r'^about', app_views.about, name='about'),
-    url(r'^messaging', app_views.messaging, name='messaging'),
-    url(r'^saveMessage', app_views.saveMessage, name='saveMessage'),
-    url(r'^token', app_views.token, name='token'),
-    url(r'^login/$',
+    #url(r'^(?i)$', app_views.home, name='home'),
+    url(r'^(?i)$',
+        app_views.login_redirect,
+        {
+            'template_name': 'app/login.html',
+            'authentication_form': BootstrapAuthenticationForm,
+            'extra_context':
+            {
+                'title':'Login',
+                'year':datetime.now().year,
+            }
+        },
+        name='login'),
+    url(r'^(?i)dashboard$', app_views.dashboard, name='dashboard'),
+    url(r'^(?i)patients', app_views.patients, name='patients'),
+    url(r'^(?i)patient-profile', app_views.patient_profile, name='patient-profile'),
+    url(r'^(?i)signup-success', app_views.signup_success, name='signup-success'),
+    url(r'^(?i)signup', app_views.signup, name='signup'),
+    url(r'^(?i)messages', app_views.messages, name='messages'),
+    url(r'^(?i)save-message', app_views.save_message, name='save-message'),
+    url(r'^(?i)save-notes', app_views.save_notes, name='save-notes'),
+    url(r'^(?i)token', app_views.token, name='token'),
+    url(r'^(?i)login/$',
         auth_views.login,
         {
             'template_name': 'app/login.html',
             'authentication_form': BootstrapAuthenticationForm,
             'extra_context':
             {
-                'title':'Log in',
+                'title':'Login',
                 'year':datetime.now().year,
             }
         },
         name='login'),
-    url(r'^logout$',
+    url(r'^(?i)logout$',
         auth_views.logout,
         {
             'next_page': '/',
@@ -45,4 +64,4 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

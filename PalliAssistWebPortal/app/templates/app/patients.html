@@ -1,0 +1,71 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Patients<small><!--Subtext for header--></small></h1>
+</div>
+
+
+<!-- Search form -->
+<section id="queryPatients">
+<form method="GET" action="/patients/">
+    {% csrf_token %}
+
+    <div class="pa-child-display-inline-block">
+        {{ form }}
+
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+
+</form>
+</section>
+
+<hr />
+
+
+{% if patient_results %}
+
+<!-- Table of search results --> 
+<table class="table table-striped">
+    <!-- Table headers -->
+    <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+    </tr>
+
+
+    <!-- Search results -->
+    {% for patient_result in patient_results %}
+    <tr>
+        <td><a href="{% url 'patient-profile' %}?u_id={{patient_result.u_id}}">{{ patient_result.full_name}}</a> </td>
+        <td>{{ patient_result.gender}} </td>
+        <td>{{ patient_result.age}} </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<div class="pa-center-wrapper">
+    No patients found.
+</div>
+
+{% endif %}
+
+
+{% endblock %}
+
+
+
+
+
+{% block scripts %}
+
+{% load staticfiles %}
+
+<script src="{% static 'app/scripts/patients.js' %}"></script>
+
+{% endblock %}
+
