@@ -6,9 +6,8 @@
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="23" />
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+        android:targetSdkVersion="25" />
+>
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -19,15 +18,14 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!-- android:name="com.twilio.ipmessaging.application.TwilioApplication" -->
     <application
         android:name="io.palliassist.palliassistmobile.twilio.application.TwilioApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name="io.palliassist.palliassistmobile.LoginActivity" >
+        android:theme="@style/NewTheme1exp" >
+        <activity android:name="io.palliassist.palliassistmobile.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,25 +33,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="io.palliassist.palliassistmobile.MainActivity"
-            android:label="@string/title_activity_login" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" />
-        </activity>
+            android:name="io.palliassist.palliassistmobile.LoginActivity"
+            android:theme="@style/NewTheme1exp" />
         <activity
-            android:name="io.palliassist.palliassistmobile.EsasActivity"
-            android:label="ESAS survey" />
-        <activity
-            android:name="io.palliassist.palliassistmobile.SettingActivity"
-            android:label="Settings" />
-        <activity
-            android:name="io.palliassist.palliassistmobile.PainLocator"
-            android:label="Pain Locator" />
-        <activity
-            android:name="io.palliassist.palliassistmobile.twilio.ui.ChatActivity"
-            android:label="ChatActivity"
-            android:noHistory="true" />
+            android:name="io.palliassist.palliassistmobile.SignupActivity"
+            android:theme="@style/NewTheme1exp" />
 
         <service
             android:name="com.twilio.ipmessaging.TwilioIPMessagingClientService"

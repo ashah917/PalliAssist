@@ -1,0 +1,189 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="io.palliassist.palliassistmobile.HomeFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/main_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="330dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/thumbnail"
+                    android:src="@drawable/picproball"
+                    android:layout_margin="10dp"
+                    app:civ_border_width="4dp"
+                    app:civ_border_color="@color/windowBackground"/>
+
+                <TextView
+                    android:id="@+id/profname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/thumbnail"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:maxLines="3"
+                    android:text="Senthil S. N."
+                    android:textColor="#222"
+                    android:textStyle="bold"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:id="@+id/institution"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/thumbnail"
+                    android:layout_below="@+id/profname"
+                    android:maxLines="3"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Rice University"
+                    android:textColor="#666"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/thumbnail"
+                    android:layout_below="@+id/institution"
+                    android:maxLines="3"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="7dp"
+                    android:text="Role: Team Administrator"
+                    android:textColor="#666"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/notify_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/thumbnail"
+                    android:maxLines="3"
+                    android:layout_marginLeft="25dp"
+                    android:text="4"
+                    android:textColor="#EF5350"
+                    android:textSize="65dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/notify_descrip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/notify_num"
+                    android:layout_below="@+id/thumbnail"
+                    android:maxLines="3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_alignBaseline="@+id/notify_num"
+                    android:text="Notifications"
+                    android:textColor="#222"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:id="@+id/meetings_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/notify_num"
+                    android:maxLines="3"
+                    android:layout_marginLeft="25dp"
+                    android:text="2"
+                    android:textColor="#EF5350"
+                    android:textSize="65dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/meetings_descrip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/notify_num"
+                    android:maxLines="3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_alignBaseline="@+id/meetings_num"
+                    android:text="Meetings scheduled"
+                    android:textColor="#222"
+                    android:textSize="25dp" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/secondary_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_below="@id/main_card_view"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_centerInParent="true"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="45dp"
+                    android:text="HOME"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/ternary_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_below="@id/secondary_card_view"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/descrup"
+                    android:layout_centerInParent="true"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textSize="16dp"
+                    android:textColor="#666"
+                    android:textStyle="italic"
+                    android:text="edit fragment_home.xml" />
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+    </RelativeLayout>
+
+
+
+</ScrollView>

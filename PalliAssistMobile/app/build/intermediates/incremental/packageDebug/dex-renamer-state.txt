@@ -1,0 +1,7 @@
+#Sat Feb 04 11:37:30 CST 2017
+base.0=C\:\\Users\\Steven\\stevensigh\\Senior_Design\\PalliassistMobile\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_dc452dcd8d89c09c2dc21d4d626a59797314d5c9
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\Steven\\stevensigh\\Senior_Design\\PalliassistMobile\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_cacdcca216e5d75b34fbd32296f87d5bf7d586e7\\classes.dex
+base.1=C\:\\Users\\Steven\\stevensigh\\Senior_Design\\PalliassistMobile\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_cacdcca216e5d75b34fbd32296f87d5bf7d586e7
+file.0=C\:\\Users\\Steven\\stevensigh\\Senior_Design\\PalliassistMobile\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_dc452dcd8d89c09c2dc21d4d626a59797314d5c9\\classes.dex

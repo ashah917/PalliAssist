@@ -1,6 +1,8 @@
 package io.palliassist.palliassistmobile.twilio.util;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,11 +12,15 @@ import com.twilio.common.TwilioAccessManager;
 import com.twilio.common.TwilioAccessManagerFactory;
 import com.twilio.common.TwilioAccessManagerListener;
 import com.twilio.ipmessaging.Channel;
-import com.twilio.ipmessaging.Constants.StatusListener;
 import com.twilio.ipmessaging.Constants.InitListener;
+import com.twilio.ipmessaging.Constants.StatusListener;
 import com.twilio.ipmessaging.IPMessagingClientListener;
 import com.twilio.ipmessaging.TwilioIPMessagingClient;
 import com.twilio.ipmessaging.TwilioIPMessagingSDK;
+
+import java.nio.charset.Charset;
+
+import io.palliassist.palliassistmobile.MessageFragment;
 
 public class BasicIPMessagingClient implements IPMessagingClientListener, TwilioAccessManagerListener {
     private static final String TAG = "BasicIPMessagingClient";
@@ -40,6 +46,29 @@ public class BasicIPMessagingClient implements IPMessagingClientListener, Twilio
 
 
     public void doLogin(final ILoginListener listener, String url) {
+        this.loginListenerHandler= setupListenerHandler();
+//        TwilioIPMessagingSDK.initializeSDK(context, new InitListener() {
+//            @Override
+//            public void onInitialized() {
+//                ipMessagingClient = TwilioIPMessagingSDK.createIPMessagingClientWithToken(capabilityToken, BasicIPMessagingClient.this);
+//                if(ipMessagingClient != null) {
+//                    //Intent intent = new Intent(context, MessageFragment.class);
+//                    //PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//                    //ipMessagingClient.setIncomingIntent(pendingIntent);
+//                    if (listener != null) {
+//                        listener.onLoginFinished();
+//                    }
+//                }
+//                else{
+//                        listener.onLoginError("ipMessagingClient is null");
+//                    }
+//                }
+//                @Override
+//                        public void onError(Exception error) {
+//
+//            }
+//        });
+
         this.urlString = url;
         this.loginListenerHandler = setupListenerHandler();
         TwilioIPMessagingSDK.setLogLevel(android.util.Log.DEBUG);
@@ -47,7 +76,8 @@ public class BasicIPMessagingClient implements IPMessagingClientListener, Twilio
             TwilioIPMessagingSDK.initializeSDK(this.context, new InitListener() {
                 @Override
                 public void onInitialized() {
-                    createClientWithAccessManager(listener);
+                 createClientWithAccessManager(listener);
+//
                 }
 
                 @Override
@@ -135,25 +165,26 @@ public class BasicIPMessagingClient implements IPMessagingClientListener, Twilio
     }
 
     private void createClientWithAccessManager(final ILoginListener listener) {
-        this.accessMgr = TwilioAccessManagerFactory.createAccessManager(this.capabilityToken, new TwilioAccessManagerListener() {
-            @Override
-            public void onAccessManagerTokenExpire(TwilioAccessManager twilioAccessManager) {
-                Log.d(TAG, "token expired.");
-                new GetCapabilityTokenAsyncTask().execute(BasicIPMessagingClient.this.urlString);
-            }
-
-            @Override
-            public void onTokenUpdated(TwilioAccessManager twilioAccessManager) {
-                Log.d(TAG, "token updated.");
-            }
-
-            @Override
-            public void onError(TwilioAccessManager twilioAccessManager, String s) {
-                Log.d(TAG, "token error: " + s);
-            }
-        });
-
-        ipMessagingClient = TwilioIPMessagingSDK.createIPMessagingClientWithAccessManager(BasicIPMessagingClient.this.accessMgr, BasicIPMessagingClient.this);
+//        this.accessMgr = TwilioAccessManagerFactory.createAccessManager(this.capabilityToken, new TwilioAccessManagerListener() {
+//            @Override
+//            public void onAccessManagerTokenExpire(TwilioAccessManager twilioAccessManager) {
+//                Log.d(TAG, "token expired.");
+//                new GetCapabilityTokenAsyncTask().execute(BasicIPMessagingClient.this.urlString);
+//            }
+//
+//            @Override
+//            public void onTokenUpdated(TwilioAccessManager twilioAccessManager) {
+//                Log.d(TAG, "token updated.");
+//            }
+//
+//            @Override
+//            public void onError(TwilioAccessManager twilioAccessManager, String s) {
+//                Log.d(TAG, "token error: " + s);
+//            }
+//        });
+        ipMessagingClient = TwilioIPMessagingSDK.createIPMessagingClientWithToken(capabilityToken, BasicIPMessagingClient.this);
+//
+        //ipMessagingClient = TwilioIPMessagingSDK.createIPMessagingClientWithAccessManager(BasicIPMessagingClient.this.accessMgr, BasicIPMessagingClient.this);
         if(ipMessagingClient != null) {
             ipMessagingClient.setListener(BasicIPMessagingClient.this);
             BasicIPMessagingClient.this.loginListenerHandler.post(new Runnable() {
@@ -207,7 +238,10 @@ public class BasicIPMessagingClient implements IPMessagingClientListener, Twilio
         @Override
         protected String doInBackground(String... params) {
             try {
-                capabilityToken = HttpHelper.httpGet(params[0]);
+                //capabilityToken = Charset.forName("UTF-8").encode(params[0]);
+
+                capabilityToken = new String(HttpHelper.httpGet(params[0]), "UTF-8");
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
