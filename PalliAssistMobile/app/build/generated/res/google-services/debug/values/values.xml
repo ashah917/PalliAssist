@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">444649914055-ictdt1o419vbascu288397dongehu26u.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://palliassist-12702.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">444649914055</string>
+    <string name="google_api_key" translatable="false">AIzaSyD4tQ-uZlyt-u8i0jwdlOBTaVBAM6aa6R0</string>
+    <string name="google_app_id" translatable="false">1:444649914055:android:45fd95d1512c9c1b</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD4tQ-uZlyt-u8i0jwdlOBTaVBAM6aa6R0</string>
+    <string name="google_storage_bucket" translatable="false">palliassist-12702.appspot.com</string>
+</resources>

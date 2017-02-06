@@ -25,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -82,10 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
-
                 this.finish();
             }
         }
@@ -102,15 +100,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getLoginData() {
 
-
         RequestQueue rq = Volley.newRequestQueue(this);
-
-
         StringRequest sr = new StringRequest(Request.Method.POST,"https://hcbredcap.com.br/api/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-
                 boolean result = validateLogin(response);
                 if(result != true) {
                     Toast.makeText(getBaseContext(), "Login failed. Please check your login and password credentials.", Toast.LENGTH_SHORT).show();
@@ -118,14 +111,11 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getBaseContext(), "Login Successful.", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getBaseContext(), "Connection error. Please try again.", Toast.LENGTH_LONG).show();
-
                 _loginButton.setEnabled(true);
                 error.printStackTrace();
             }
@@ -154,12 +144,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validateLogin(String response) {
         _loginButton.setEnabled(true);
-
-//        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-//                R.style.NewTheme1exp);
-//        progressDialog.setIndeterminate(true);
-//        progressDialog.setMessage("Authenticating...");
-//        progressDialog.show();
         Log.wtf("LOGIN", response);
         Boolean success = false;
         try {
@@ -171,7 +155,6 @@ public class LoginActivity extends AppCompatActivity {
                 if ((user.equals(_emailText.getText().toString())) && (pswd.equals(_passwordText.getText().toString()))) {
                     USER = user;
                     success = true;
-
                 }
 
             }
@@ -181,8 +164,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (success) {
-
             final Intent i = new Intent(this, MainActivity.class);
+            Intent mService = new Intent(this, MessagingService.class);
+            Intent idService = new Intent(this, FirebaseIdService.class);
+            FirebaseMessaging.getInstance().subscribeToTopic("test");
+            startService(mService);
+            startService(idService);
             startActivity(i);
             finish();
 
@@ -191,7 +178,6 @@ public class LoginActivity extends AppCompatActivity {
         _emailText.requestFocus();
         _emailText.setText("");
         _passwordText.setText("");
-//        progressDialog.dismiss();
         return success;
     }
 

@@ -5,7 +5,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
     android:background="#FFFFFF"
-tools:context="io.palliassist.palliassistmobile.ESASFragment">
+tools:context="com.example.senthil.uiexperimentspalliassist.ESASFragment">
 
 <TableLayout
     android:layout_width="wrap_content"
@@ -685,6 +685,302 @@ tools:context="io.palliassist.palliassistmobile.ESASFragment">
 
     <SeekBar
         android:id="@+id/simpleSeekBar9"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:max="10"
+        android:progress="0"
+        android:paddingBottom="20dip"
+        android:thumb="@drawable/red_scrubber_control"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:progressTint="#EF5350"/>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/editText10"
+            android:hint="Constipation"
+            android:text="No Constipation"
+            android:textAlignment="textStart"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <TextView
+            android:id="@+id/editText10a"
+            android:hint="Constipation"
+            android:text="Worst Constipation"
+            android:gravity="right"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:paddingLeft="10dip"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/val10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:paddingRight="10dip"
+            android:textColor="@android:color/black"
+            android:text="10"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+    </TableRow>
+
+    <SeekBar
+        android:id="@+id/simpleSeekBar10"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:max="10"
+        android:progress="0"
+        android:paddingBottom="20dip"
+        android:thumb="@drawable/red_scrubber_control"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:progressTint="#EF5350"/>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/editText11"
+            android:hint="Fever"
+            android:text="No Fever"
+            android:textAlignment="textStart"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <TextView
+            android:id="@+id/editText11a"
+            android:hint="Fever"
+            android:text="Worst Fever"
+            android:gravity="right"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:paddingLeft="10dip"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/val11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:paddingRight="10dip"
+            android:textColor="@android:color/black"
+            android:text="10"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+    </TableRow>
+
+    <SeekBar
+        android:id="@+id/simpleSeekBar11"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:max="10"
+        android:progress="0"
+        android:paddingBottom="20dip"
+        android:thumb="@drawable/red_scrubber_control"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:progressTint="#EF5350"/>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/editText12"
+            android:hint="Vomiting"
+            android:text="No Vomiting"
+            android:textAlignment="textStart"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <TextView
+            android:id="@+id/editText12a"
+            android:hint="Vomiting"
+            android:text="Worst Vomiting"
+            android:gravity="right"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:paddingLeft="10dip"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/val12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:paddingRight="10dip"
+            android:textColor="@android:color/black"
+            android:text="10"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+    </TableRow>
+
+    <SeekBar
+        android:id="@+id/simpleSeekBar12"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:max="10"
+        android:progress="0"
+        android:paddingBottom="20dip"
+        android:thumb="@drawable/red_scrubber_control"
+        android:progressDrawable="@drawable/red_scrubber_progress"
+        android:progressTint="#EF5350"/>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/editText13"
+            android:hint="Confusion"
+            android:text="No Confusion"
+            android:textAlignment="textStart"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:textColor="@android:color/holo_green_dark" />
+
+        <TextView
+            android:id="@+id/editText13a"
+            android:hint="Confusion"
+            android:text="Worst Confusion"
+            android:gravity="right"
+            android:layout_height="25dip"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:paddingLeft="10dip"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/val13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:paddingRight="10dip"
+            android:textColor="@android:color/black"
+            android:text="10"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+    </TableRow>
+
+    <SeekBar
+        android:id="@+id/simpleSeekBar13"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
