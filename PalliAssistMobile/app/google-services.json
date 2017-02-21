@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "444649914055",
+    "firebase_url": "https://palliassist-12702.firebaseio.com",
+    "project_id": "palliassist-12702",
+    "storage_bucket": "palliassist-12702.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444649914055:android:45fd95d1512c9c1b",
+        "android_client_info": {
+          "package_name": "io.palliassist.palliassistmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444649914055-ictdt1o419vbascu288397dongehu26u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4tQ-uZlyt-u8i0jwdlOBTaVBAM6aa6R0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

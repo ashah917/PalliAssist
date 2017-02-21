@@ -1,55 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <Button android:id="@+id/button_notify"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Notification"
-        android:layout_below="@+id/button_pain"
-        android:layout_marginTop="37dp"
-        android:onClick="buttonClicked"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:id="@+id/container_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button android:id="@+id/button_pain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pain"
-        android:layout_marginTop="37dp"
-        android:onClick="buttonClicked"
-        android:layout_below="@+id/button_esas"
-        android:layout_alignParentStart="true" />
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+        </LinearLayout>
 
-    <Button android:id="@+id/button_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Communication"
-        android:onClick="buttonClicked"
-        android:layout_marginTop="37dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        <FrameLayout
+            android:id="@+id/container_body"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    <Button android:id="@+id/button_esas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ESAS Survey"
-        android:onClick="buttonClicked"
-        android:layout_marginTop="37dp"
-        android:layout_below="@+id/button_message"
-        android:layout_alignParentStart="true" />
 
-    <Button android:id="@+id/button_setting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:onClick="buttonClicked"
-        android:layout_marginTop="37dp"
-        android:layout_below="@+id/button_notify"
-        android:layout_alignParentStart="true" />
-</RelativeLayout>
+    </LinearLayout>
+
+
+    <fragment
+        android:id="@+id/fragment_navigation_drawer"
+        android:name="io.palliassist.palliassistmobile.FragmentDrawer"
+        android:layout_width="@dimen/nav_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:layout="@layout/fragment_navigation_drawer"
+        tools:layout="@layout/fragment_navigation_drawer" />
+
+</android.support.v4.widget.DrawerLayout>

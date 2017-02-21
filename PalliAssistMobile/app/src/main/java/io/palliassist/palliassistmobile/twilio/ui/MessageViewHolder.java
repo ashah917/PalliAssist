@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.twilio.ipmessaging.Message;
+
+import io.palliassist.palliassistmobile.MessageFragment;
 import io.palliassist.palliassistmobile.R;
-import io.palliassist.palliassistmobile.twilio.ui.ChatActivity;
 import uk.co.ribot.easyadapter.ItemViewHolder;
 import uk.co.ribot.easyadapter.PositionInfo;
 import uk.co.ribot.easyadapter.annotations.LayoutId;
 import uk.co.ribot.easyadapter.annotations.ViewId;
-
-import com.twilio.ipmessaging.Message;
 
 /**
  * Created by User on 11/27/2016.
@@ -21,7 +21,7 @@ import com.twilio.ipmessaging.Message;
 
 
 @LayoutId(R.layout.message_item_layout)
-public class MessageViewHolder extends ItemViewHolder<Message> {
+public class  MessageViewHolder extends ItemViewHolder<Message> {
 
     @ViewId(R.id.body)
     TextView body;
@@ -66,7 +66,7 @@ public class MessageViewHolder extends ItemViewHolder<Message> {
             body.setText(message.getMessageBody());
 
             // Check for current author
-            if(message.getAuthor().compareTo(ChatActivity.local_author) == 0 || message.getAuthor().equals("")){
+            if(message.getAuthor().compareTo(MessageFragment.local_author) == 0 || message.getAuthor().equals("")){
                 body.setBackgroundResource(R.drawable.bubble_a);
                 singleMessageContainer.setGravity(Gravity.END);
             }else{
