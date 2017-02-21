@@ -1,0 +1,39 @@
+<br>
+
+{% if medications %}
+
+<!-- Table of search results --> 
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <!-- <th>Date</th> -->
+            <th>Name</th>
+            <th>Form</th>
+            <th>Dose</th>
+            <th>Posology</th>
+            <th>Rescue</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Search results -->
+        {% for medication in medications %}
+        <tr>
+            <!-- <td class="millis-date">{{ medication.created_date }}</td> -->
+            <td>{{ medication.name }}</td>
+            <td>{{ medication.form }}</td>
+            <td>{{ medication.dose }}</td>
+            <td>{{ medication.posology }}</td>
+            <td>{{ medication.rescue }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<br>
+<div class="pa-center-wrapper">
+    No medications found.
+</div>
+
+{% endif %}

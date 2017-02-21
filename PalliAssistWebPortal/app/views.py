@@ -6,14 +6,19 @@ from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse, HttpResponseRedirect
 from django.template import RequestContext
-from datetime import datetime
 from cgi import parse_qs, escape
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import views as auth_views
 from django.core.urlresolvers import reverse
 #from app.models import UnreadMessage
-from app.models import Patient, Doctor
+#from app.models import Patient, Doctor
+from app.models import *
+from django.core import serializers
+from django.utils import timezone
+
 import json
+import datetime
+import pytz
 
 from .forms import QueryPatientsForm
 from .forms import PatientNotesForm
@@ -26,7 +31,7 @@ from django.contrib.auth.models import User
 import logging
 #import MySQLdb
 from redcap import Project, RedcapError
-import urllib
+#import urllib
 
 from twilio.access_token import AccessToken, IpMessagingGrant
 from twilio.rest.ip_messaging import TwilioIpMessagingClient
@@ -54,7 +59,7 @@ def dashboard(request):
 
     context = {
         'title':'Dashboard',
-        'year':datetime.now().year,
+        'year':datetime.datetime.now().year,
         'unread_messages': unread_messages_patients,
     }
 
@@ -130,7 +135,7 @@ def patients(request):
     context = {
         'title': 'Patients',
         'message': 'List of patients.',
-        'year': datetime.now().year,
+        'year': datetime.datetime.now().year,
         'patient_results': patient_results,
         'form': query_patients_form,
     }
@@ -150,19 +155,84 @@ def patient_profile(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('login'))
 
-    patient_id = request.GET['u_id']
+    patient_id = request.GET['sid']
     print "patient_id:", patient_id
 
-    patient = Patient.objects.get(u_id = patient_id)
+    patient_obj = Patient.objects.get(sid=patient_id)
+    patient_obj.next_appointment = convertDateTimeToMillis(patient_obj.next_appointment)
 
     notes_form = PatientNotesForm()
+
+    ### Messages tab.
+    channels = []
+    # List the channels that the user is a member of
+    for c in settings.TWILIO_IPM_SERVICE.channels.list():
+        if c.unique_name == patient_obj.user.username:
+            print "selected channel", c.friendly_name, c.sid
+            channel_json = {
+                'sid': str(c.sid),
+                'unique_name': str(c.unique_name),
+                'friendly_name': str(c.friendly_name),
+            }
+            channels.append(channel_json)
+            break
+
+    token = AccessToken(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_API_KEY, settings.TWILIO_API_SECRET, request.user.username)
+    endpoint = "PalliAssist:" + request.user.username + ":web"
+    # Create an IP Messaging grant and add to token
+    ipm_grant = IpMessagingGrant(endpoint_id=endpoint, service_sid=settings.TWILIO_IPM_SERVICE_SID)
+    token.add_grant(ipm_grant)
+
+    ### ESAS tab.
+    esas_objects = ESASSurvey.objects.filter(patient=patient_obj)
+
+    for esas in esas_objects:
+        esas.created_date = convertDateTimeToMillis(esas.created_date)
+
+    esas_json = serializers.serialize("json", esas_objects)
+
+    """
+    for esas in esas_objects:
+        temp_esas = {}
+        #temp_esas["created_date"] = (esas.created_date.replace(tzinfo=None) - datetime.datetime(1970, 1, 1)).total_seconds() * 1000
+        temp_esas["created_date"] = convertDateTimeToMillis(esas.created_date)
+        temp_questions = []
+        for q in esas.questions.all():
+            temp_questions.append({"question": str(q.question), "answer": q.answer})
+
+        temp_esas["questions"] = temp_questions
+        temp_esas["primary_key"] = esas.pk;
+        esas_surveys.append(temp_esas)
+    """
+
+
+
+    ### Pain tab.
+    pain_objects = PainSurvey.objects.filter(patient=patient_obj)
+    for pain in pain_objects:
+        pain.created_date = convertDateTimeToMillis(pain.created_date)
+
+
+    ### Medication tab.
+    medications = Medication.objects.filter(patient=patient_obj)
+    for medication in medications:
+        medication.created_date = convertDateTimeToMillis(medication.created_date)
+
 
     context = {
         'title': 'Patient Profile',
         'message': 'Patient profile.',
-        'year': datetime.now().year,
-        'patient': patient,
+        'year': datetime.datetime.now().year,
+        'patient': patient_obj,
         'notes_form': notes_form,
+        'medications': medications,
+        'esas_objects': esas_objects,
+        'esas_json': esas_json,
+        'pain_objects': pain_objects,
+        'pain_width': 207,
+        'pain_height': 400,
+        'channels': channels, 
+        'token': token, # Twilio token for messaging tab.
     }
 
     return render(
@@ -191,18 +261,18 @@ def signup(request):
             if role == 'patient':
                 # Create User and Patient object.
                 patients_doctor_username = signup_form.cleaned_data['patients_doctor_username']
-                patient = Patient.objects.create(user=user, u_id=10, full_name=full_name)
+                patient = Patient.objects.create(user=user, sid=10, full_name=full_name)
                 Doctor.objects.get(user=User.objects.get(username=patients_doctor_username)).patients.add(patient)
             else:
                 # Create User and Doctor object.
-                doctor = Doctor.objects.create(user=user, u_id=10, full_name=full_name)
+                doctor = Doctor.objects.create(user=user, sid=10, full_name=full_name)
 
             return HttpResponseRedirect("/signup-success/")
 
 
     context = {
         'title': 'Sign Up',
-        'year': datetime.now().year,
+        'year': datetime.datetime.now().year,
         'form': signup_form,
     }
 
@@ -219,7 +289,7 @@ def signup_success(request):
 
     context = {
         'title': 'Sign Up',
-        'year': datetime.now().year,
+        'year': datetime.datetime.now().year,
     }
 
     return render(
@@ -237,15 +307,39 @@ def messages(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('login'))
 
+    """
+    How to delete a channel:
+    """
+    """
+    # Delete current demo channel.
+    demo_channel = settings.TWILIO_IPM_SERVICE.channels.get(sid="CH775a5cc2b8ef42db8362f101e305569a")
+    response = demo_channel.delete()
+    print "delete Demo Channel:", response   # response = True on success.
+
+    # Recreate demo channel.
+    new_channel = settings.TWILIO_IPM_SERVICE.channels.create(friendly_name="Demo Channel", unique_name="Demo Channel", type="public")
+    new_channel.members.create(identity=request.user.username)
+    """
+    
+    """
+    patient0 = "patient0"
+    # patient0 channel sid="CHd4c969e1d91946aeb1ebde3fa5cb85a2"
+    new_channel = settings.TWILIO_IPM_SERVICE.channels.create(unique_name=patient0, friendly_name=patient0, type="private")
+    new_channel.members.create(identity=request.user.username)
+    new_channel.members.create(identity=patient0)
+    """
+
+
+
     channels = []
     # List the channels that the user is a member of
     for c in settings.TWILIO_IPM_SERVICE.channels.list():
-        print "channel", c.friendly_name
         for m in c.members.list():
-            print m.identity
+            #print m.identity
             # Assuming that all twilio identities are based off of usernames
             if m.identity == request.user.username:
                 # str() needed to get rid of u'hello' when escaping the string to javascript.
+                print "selected channel", c.friendly_name, c.sid
                 channel_json = {
                     'sid': str(c.sid),
                     'unique_name': str(c.unique_name),
@@ -277,7 +371,7 @@ def messages(request):
     context = {
         'title':'Messages',
         'message':'Send messages.',
-        'year':datetime.now().year,
+        'year':datetime.datetime.now().year,
         'patients': patients,
         'channels': channels,
         'token': token,
@@ -369,6 +463,7 @@ def token(request):
     # COMMENTED CAUSE FLASK THING - Return token info as JSON 
     #return jsonify(identity=identity, token=token.to_jwt())
     return JsonResponse({'identity': identity, 'token': token.to_jwt()})
+    #return JsonResponse({'identity': identity, 'token': token})
 
 def save_notes(request):
     """
@@ -378,26 +473,130 @@ def save_notes(request):
     """
     assert isinstance(request, HttpRequest)
 
+    """
     doctor_notes = request.POST['notes']
     print "doctor_notes:", doctor_notes
     print "doctor_notes:", urllib.quote(doctor_notes)
-    patient_id = request.POST['u_id']
+    patient_id = request.POST['sid']
 
-    patient = Patient.objects.get(u_id=patient_id)
+    patient = Patient.objects.get(sid=patient_id)
     patient.doctor_notes = urllib.quote(doctor_notes)
     patient.save()
+    """
 
     return JsonResponse({})
 
-def test_url(request):
-    """ NOT IN USE """
+def create_channel(request):
+    """
+    Saves notes about patients. POST request from 
+    PatientNotesForm on the patient profile page. 
+    jQuery runs when save button is clicked.
+    """
     assert isinstance(request, HttpRequest)
 
-    notification = settings.TWILIO_NOTIFY_CLIENT.notify.services(settings.TWILIO_NOTIFY_SERVICE_SID).notifications.create(
-            tag="all",
-            body="Hello World from PalliAssist"
-    )
+    print request.POST['channel_name']
+    channel_name = request.POST['channel_name']
 
-    print notification
+    new_channel = settings.TWILIO_IPM_SERVICE.channels.create(friendly_name=channel_name, type="private")
+    new_channel.members.create(identity=request.user.username)
 
-    return JsonResponse({'notification': notification})
+    print new_channel
+    print new_channel.type
+    print new_channel.friendly_name
+    print new_channel.unique_name
+
+    return JsonResponse({})
+
+@csrf_exempt
+def fcm(request):
+    """
+    Handle FCM requests from mobile.
+    Format described in Meeting Minutes Feb 2, 2017
+    """
+    assert isinstance(request, HttpRequest)
+
+    fcm_action = request.POST["action"]
+    print "fcm_action", fcm_action
+
+    fcm_timestamp = request.POST["timestamp"] # milliseconds
+    dt_unaware = datetime.datetime.fromtimestamp(int(fcm_timestamp)/1000.0)
+    dt_aware = timezone.make_aware(dt_unaware, timezone.get_current_timezone())
+    print "dt_aware", dt_aware 
+
+    fcm_type = request.POST["type"]
+    print "fcm_type", fcm_type 
+
+    fcm_patient = request.POST["patient"] # TODO hardcoded to patient0 right now 
+    patient_obj = User.objects.get(username=fcm_patient).patient
+    print "patient_obj", patient_obj 
+
+    #return JsonResponse({"action": fcm_action, "timestamp": fcm_timestamp, "type": fcm_type, "questions": fcm_questions})
+
+
+    if fcm_action == "REQUEST":
+        # TODO
+        pass
+    elif fcm_action == "SAVE":
+        if fcm_type == "ESAS":
+            fcm_questions = request.POST["questions"] # comes in string.
+            questions = json.loads(fcm_questions) # JSON object.
+            print "questions", questions
+
+            esas = ESASSurvey.objects.create(patient=patient_obj, created_date=dt_aware)
+
+            for q in questions:
+                temp_q = ESASQuestion.objects.create(question=q["question"], answer=q["answer"])
+                print temp_q
+                esas.questions.add(temp_q)
+
+            esas.save()
+            print "esas", esas
+
+        elif fcm_type == "PAIN":
+            pain = PainSurvey.objects.create(created_date=dt_aware, patient=patient_obj, width=int(request.POST["width"]), height=int(request.POST["height"]))
+
+            # int(float()) to get around parsing a string with a decimal to an int
+            pain_point = PainPoint.objects.create(x=int(float(request.POST["x"])), y=int(float(request.POST["y"])), intensity=int(request.POST["intensity"]))
+
+            print int(request.POST["width"])
+            print int(request.POST["height"])
+            print int((float(request.POST["x"])))
+            print int((float(request.POST["y"])))
+            print int((float(request.POST["intensity"])))
+
+            print "pain_point", pain_point 
+            pain.points.add(pain_point)
+            print "points", pain.points.all()
+
+            pain.save()
+            print "pain", pain
+
+            """
+            fcm_points = request.POST["points"] # comes in string.
+            points = json.loads(fcm_points) # JSON object.
+
+            for p in points:
+                temp_p = PainPoint.objects.create(x=int(p["x"]), y=int(p["y"]), intensity=int(p["intensity"]))
+                print temp_p
+                pain.points.add(temp_p)
+
+            pain.save()
+            print pain
+            """
+
+        elif fcm_type == "MEDICATION":
+            # TODO
+            pass
+        elif fcm_type == "CUSTOM":
+            # TODO
+            pass
+        else:
+            print "Unknown request type", fcm_type 
+    else:
+        print "Unknown request action", fcm_action 
+
+    return render(request, 'app/blank.html')
+
+def convertDateTimeToMillis(dt):
+    return (dt.replace(tzinfo=None) - datetime.datetime(1970, 1, 1)).total_seconds() * 1000
+

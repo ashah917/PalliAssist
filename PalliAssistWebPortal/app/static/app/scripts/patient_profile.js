@@ -6,8 +6,8 @@ function clearNotes() {
 };
 
 function saveNotes(patient_id) {
-    console.log($("#notes-form").serialize()) + "&u_id=" + patient_id;
-    $.post('/save-notes', $("#notes-form").serialize() + "&u_id=" + patient_id, function() {
+    console.log($("#notes-form").serialize()) + "&sid=" + patient_id;
+    $.post('/save-notes', $("#notes-form").serialize() + "&sid=" + patient_id, function() {
         console.log('posted');
 
     })
@@ -39,6 +39,13 @@ $(function() {
     // Change hash for page-reload
     $('.nav-tabs a').on('shown.bs.tab', function (e) {
         window.location.hash = e.target.hash;
+    })
+
+    $('.millis-date').each(function() {
+        // Replace all the elements with class millis-date.
+        // Original value was timestamp in millis, returns a readable date string.
+        $(this).text(parseMillis($(this).text()));
+
     })
 
 });
